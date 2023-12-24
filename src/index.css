@@ -17,3 +17,8 @@ code {
   background-color: aqua;
   color: #2b2b2b;
 }
+.buttonN {
+  width: 100px;
+  padding: 10px;
+  background-color: lime;
+}

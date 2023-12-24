@@ -1,21 +1,68 @@
 import { Component } from "react";
 
 class Login extends Component {
-  state = { flag: "", userData: { myname: "", myfamily: "" } };
+  state = {
+    fetchData: false,
+    data: [],
+    loading: false,
+    counter: 0,
+  };
 
-  componentDidMount() {
-    const myname = prompt("newname:");
-    const myfamily = prompt("familyName:");
+  updateloading() {
+    let { counter, ...state } = this.state;
+    if (counter < 1) {
+      this.setState({ ...this.state, loading: true, counter: 1 });
+    }
+    setTimeout(() => {
+      const newData = Array.from(new Array(10));
 
-    this.setState({ ...this.state, userData: { myname, myfamily } });
+      console.log("mj", newData);
+      this.setState({
+        ...this.state,
+        fetchData: false,
+        loading: false,
+        counter: 0,
+      });
+    }, 2000);
   }
 
-  componentDidCatch() {}
+  componentDidUpdate() {
+    this.updateloading();
+
+    console.log(this.state);
+  }
+
+  func2() {
+    let myarr = [1, 2, 3];
+    myarr.map((item, index) => <div>{item}</div>);
+  }
 
   render() {
-    const { myname, myfamily } = this.state.userData;
+    return (
+      <h1>
+        <button
+          className="buttonN"
+          onClick={() => {
+            this.setState({
+              ...this.state,
+              fetchData: true,
+              data: ["data1", "data2", "data3"],
+            });
+          }}
+        >
+          fetch data
+        </button>
 
-    return <h1> Hello {myname + " " + myfamily}</h1>;
+        {this.state.loading && this.state.fetchData ? (
+          <div>loading...</div>
+        ) : (
+          <div> {this.state.data.map((item,index)=>{
+            console.log(item,index);
+            return <div key={index+'mojde'}>{item} </div>
+          })}</div>
+        )}
+      </h1>
+    );
   }
 }
 
