@@ -40,8 +40,9 @@ class Login extends Component {
   render() {
     return (
       <h1>
+        <h1>hello</h1>
         <button
-          className="buttonN"
+          className="btn-blue"
           onClick={() => {
             this.setState({
               ...this.state,
@@ -56,10 +57,13 @@ class Login extends Component {
         {this.state.loading && this.state.fetchData ? (
           <div>loading...</div>
         ) : (
-          <div> {this.state.data.map((item,index)=>{
-            console.log(item,index);
-            return <div key={index+'mojde'}>{item} </div>
-          })}</div>
+          <div>
+            {" "}
+            {this.state.data.map((item, index) => {
+              console.log(item, index);
+              return <div key={index + "mojde"}>{item} </div>;
+            })}
+          </div>
         )}
       </h1>
     );
